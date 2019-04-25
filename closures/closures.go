@@ -3,7 +3,7 @@ package main
 import "fmt"
 
 func autoPlus(gap int) func() int {
-	var i = 0
+	var i int = 0
 	return func() int {
 		i = i + gap
 		return i
