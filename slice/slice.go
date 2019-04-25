@@ -2,8 +2,12 @@ package main
 
 import "fmt"
 
-func main(){
+func main() {
 	primes := [6]int{2, 3, 5, 7, 11, 13}
 	var s []int = primes[1:5]
-	fmt.Println(s);
+
+	s = append(s, 20)
+	s = append(s, 21)
+
+	fmt.Println(s)
 }
