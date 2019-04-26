@@ -2,16 +2,24 @@ package main
 
 import "fmt"
 
-func main(){
-	
-	i, j := 42, 2701
+func zeroval(ival int) {
+	ival = 0
+}
 
-	p := &i         // point to i
-	fmt.Println(*p) // read i through the pointer
-	*p = 21         // set i through the pointer
-	fmt.Println(i)  // see the new value of i
+func zeropointer(iptr *int) {
+	*iptr = 0
+}
 
-	p = &j         // point to j
-	*p = *p / 37   // divide j through the pointer
-	fmt.Println(j) // see the new value of j
+func main() {
+
+	i := 1
+
+	zeroval(i)
+	fmt.Println(i)
+
+	iptr := &i
+	zeropointer(iptr)
+
+	fmt.Println(i)
+	fmt.Println(&i)
 }
