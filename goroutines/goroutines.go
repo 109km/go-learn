@@ -22,9 +22,9 @@ func f(from string) {
 */
 func main() {
 
-	go f("hello2")
+	go f("hello1")
 
-	f("hello")
+	f("hello2")
 
 	go f("hello3")
 
