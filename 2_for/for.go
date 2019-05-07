@@ -14,4 +14,9 @@ func main() {
 		fmt.Println(j)
 	}
 
+	for {
+		fmt.Println("loop")
+		break
+	}
+
 }
