@@ -3,7 +3,7 @@ package main
 import "fmt"
 
 /*
-	The `Channels` are used to accept the values
+	The `Channel` is used to accept the values
 	passed from goroutines which means the values can
 	be passed from one thread to another.
 */
@@ -14,7 +14,7 @@ func f() {
 
 func main() {
 
-	messages := make(chan string, 2)
+	messages := make(chan string, 2) // This channel can store two strings.
 
 	fmt.Println("start")
 
