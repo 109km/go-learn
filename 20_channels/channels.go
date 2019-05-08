@@ -8,19 +8,28 @@ import "fmt"
 	be passed from one thread to another.
 */
 
-func f() {
-
-}
-
 func main() {
 
-	messages := make(chan string, 2) // This channel can store two strings.
-
+	msg := make(chan string)         // This type of grammar declares block channel
+	messages := make(chan string, 2) // This non-block channel, it can store two strings.
+	msg2 := make(chan string)
 	fmt.Println("start")
 
 	go func() {
+		msg <- "msg"
+		msg2 <- "msg2"
 		messages <- "ping"
 		messages <- "ping2"
+	}()
+
+	// If the channel is a blocking channel,
+	// it must be received in a single coroutine
+	go func() {
+		<-msg
+	}()
+
+	go func() {
+		<-msg2
 	}()
 
 	go func() {
