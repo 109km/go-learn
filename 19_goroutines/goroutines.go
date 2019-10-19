@@ -1,6 +1,9 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"time"
+)
 
 func f(from string) {
 	for i := 0; i < 3; i++ {
@@ -31,6 +34,7 @@ func main() {
 	go func(msg string) {
 		fmt.Println(msg)
 	}("going")
-	fmt.Scanln()
+
+	time.Sleep(time.Second)
 	fmt.Println("done")
 }
