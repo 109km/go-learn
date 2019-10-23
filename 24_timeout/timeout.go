@@ -27,6 +27,7 @@ func main() {
 	}
 
 	// If `default` case is set, the timeout won't work.
+	// Directly goes to the end of main goroutine.
 	select {
 	case res := <-c2:
 		fmt.Println(res)
@@ -35,4 +36,6 @@ func main() {
 	default:
 		fmt.Println("default 2")
 	}
+
+	fmt.Println("main ended")
 }
