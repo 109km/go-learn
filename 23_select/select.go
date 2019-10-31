@@ -24,6 +24,7 @@ func main() {
 		channel2 <- "channel2"
 	}()
 
+	fmt.Println("Before select:")
 	// The loops' number must equal to channels' number.
 	for i := 0; i < 2; i++ {
 		select {
@@ -33,4 +34,6 @@ func main() {
 			fmt.Println("received", msg2)
 		}
 	}
+
+	fmt.Println("End of Main")
 }
