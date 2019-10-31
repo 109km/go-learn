@@ -8,7 +8,7 @@ import (
 
 func main() {
 	var (
-		host   = "www.baidu.com"
+		host   = "www.taobao.com"
 		port   = "80"
 		remote = host + ":" + port
 		msg    = "GET /\n"
