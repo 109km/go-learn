@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+
 	"golang.org/x/tour/tree"
 )
 
@@ -42,10 +43,23 @@ func Same(t1, t2 *tree.Tree) bool {
 
 func main() {
 	ch := make(chan int)
+	ch1 := make(chan bool)
+	ch2 := make(chan bool)
+	go func() {
+		ret := Same(tree.New(1), tree.New(1))
+		ch1 <- ret
+	}()
+	go func() {
+		ret := Same(tree.New(1), tree.New(2))
+		ch2 <- ret
+	}()
 	go Walk(tree.New(1), ch)
+
+	fmt.Println(<-ch1)
+	fmt.Println(<-ch2)
+
 	for v := range ch {
 		fmt.Println(v)
 	}
-	fmt.Println(Same(tree.New(1), tree.New(1)))
-	fmt.Println(Same(tree.New(1), tree.New(2)))
+
 }
