@@ -28,4 +28,5 @@ func main() {
 	close(jobs)
 	fmt.Println("All jobs are sent")
 	<-done // wait the channel `done`
+	fmt.Println("End of program")
 }
