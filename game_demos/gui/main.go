@@ -1,16 +1,16 @@
 package main
 
 import (
-	"korok.io/korok/gui"
-	"korok.io/korok/hid/input"
+	"korok.io/korok"
 	"korok.io/korok/asset"
 	"korok.io/korok/game"
 	"korok.io/korok/gfx"
-	"korok.io/korok"
+	"korok.io/korok/gui"
+	"korok.io/korok/hid/input"
 
-	"log"
 	"fmt"
 	"korok.io/korok/gui/auto"
+	"log"
 )
 
 // Note:
@@ -18,35 +18,35 @@ import (
 // So I leave the problem to the developer.
 // The id start from 1 (0 is used by the default layout).
 type MainScene struct {
-	face gfx.Tex2D
+	face  gfx.Tex2D
 	slide float32
 
 	normal, pressed gfx.Tex2D
-	showbutton bool
+	showbutton      bool
 }
 
 func (m *MainScene) Load() {
-	asset.Texture.Load("face.png")
-	asset.Texture.Load("block.png")
-	asset.Texture.Load("particle.png")
-	asset.Texture.Load("press.png")
-	asset.Font.LoadBitmap("font1", "font.png", "font.json")
+	asset.Texture.Load("./assets/face.png")
+	asset.Texture.Load("./assets/block.png")
+	asset.Texture.Load("./assets/particle.png")
+	asset.Texture.Load("./assets/press.png")
+	asset.Font.LoadBitmap("./assets/font1", "./assets/font.png", "./assets/font.json")
 }
 
 func (m *MainScene) OnEnter(g *game.Game) {
-	fnt, _ := asset.Font.Get("font1")
+	fnt, _ := asset.Font.Get("./assets/font1")
 
 	// set font
 	gui.SetFont(fnt)
 	gui.DebugDraw = true
 
 	// image
-	face := asset.Texture.Get("face.png")
+	face := asset.Texture.Get("./assets/face.png")
 	m.face = face
 
 	// image button background
-	m.pressed = asset.Texture.Get("press.png")
-	m.normal = asset.Texture.Get("block.png")
+	m.pressed = asset.Texture.Get("./assets/press.png")
+	m.normal = asset.Texture.Get("./assets/block.png")
 
 	// slide default value
 	m.slide = .5
@@ -78,21 +78,20 @@ func (m *MainScene) Widget() {
 	// draw image button
 	gui.ImageButton(6, gui.Rect{50, 30, 30, 30}, m.normal, m.pressed, nil)
 
-
 	// draw button
-	if e := gui.Button(4, gui.Rect{0, 100, 0, 0},"NewButton", nil); (e & gui.EventWentDown) != 0 {
+	if e := gui.Button(4, gui.Rect{0, 100, 0, 0}, "NewButton", nil); (e & gui.EventWentDown) != 0 {
 		log.Println("Click New Button")
 		m.showbutton = true
 	}
 	if m.showbutton {
-		if e := gui.Button(5, gui.Rect{0, 150, 0, 0},"Dismiss", nil); (e & gui.EventWentDown) != 0 {
+		if e := gui.Button(5, gui.Rect{0, 150, 0, 0}, "Dismiss", nil); (e & gui.EventWentDown) != 0 {
 			log.Println("Click Old Button")
 			m.showbutton = false
 		}
 	}
 
 	// draw slider
-	gui.Slider(7, gui.Rect{100, 0, 120, 10},  &m.slide, nil)
+	gui.Slider(7, gui.Rect{100, 0, 120, 10}, &m.slide, nil)
 
 	// gui.DefaultContext().Layout.Dump()
 }
@@ -127,12 +126,9 @@ func main() {
 	log.Println("")
 
 	options := &korok.Options{
-		Title:"UI Test!",
-		Width:480,
-		Height:320,
+		Title:  "UI Test!",
+		Width:  480,
+		Height: 320,
 	}
 	korok.Run(options, &MainScene{})
 }
-
-
-
