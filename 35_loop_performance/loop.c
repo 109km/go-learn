@@ -1,6 +1,11 @@
 #include <stdio.h>
 #include <time.h>
 
+/**
+ * Why copyij is much faster than copyij1 ???
+ * The only difference is the loop's order.
+ * 
+*/
 void copyij(int src[2048][2048],
             int dst[2048][2048])
 {
