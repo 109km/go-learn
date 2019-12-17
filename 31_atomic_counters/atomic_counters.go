@@ -2,23 +2,26 @@ package main
 
 import (
 	"fmt"
+	"sync"
 	"sync/atomic"
-
-	"time"
 )
 
 func main() {
 	var ops uint64
+	total := 0
+	var wg sync.WaitGroup
 	for i := 0; i < 50; i++ {
+		wg.Add(1)
 		go func() {
-			for {
+			for c := 0; c < 1000; c++ {
 				atomic.AddUint64(&ops, 1)
-				time.Sleep(time.Millisecond)
+				// This operation is not atomic,so the final number must be smaller than 50000
+				total++
 			}
+			wg.Done()
 		}()
 	}
-	time.Sleep(time.Second)
-
-	opsFinal := atomic.LoadUint64(&ops)
-	fmt.Println("ops:", opsFinal)
+	wg.Wait()
+	fmt.Println("ops:", ops)
+	fmt.Println("total:", total)
 }
