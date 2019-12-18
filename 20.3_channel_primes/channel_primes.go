@@ -16,11 +16,10 @@ func main() {
 	// Unfortunately, the writing goroutine is also waiting,
 	// cause the reading goroutine locked this channel.
 	// So they are waiting for each other.
-	/**
-	for {
-		fmt.Println(<-primes)
-	}
-	*/
+
+	// for {
+	// 	fmt.Println(<-primes)
+	// }
 
 	go read(primes)
 	time.Sleep(1e9)
