@@ -11,5 +11,8 @@ type vertex struct {
 var v1 vertex
 
 func main() {
+
+	v2 := &vertex{}
 	fmt.Printf("%+v\n", v1)
+	fmt.Printf("%+v\n", *v2)
 }
