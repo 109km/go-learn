@@ -53,14 +53,14 @@ func main() {
 		fmt.Println(err2.Error())
 	}
 
-	date := 821
-	chapterId := 647
+	date := 800
+	chapterId := 600
 	sectionId := 1
 
 	i := 0
 	j := 0
 	k := 0
-	for i < 11 {
+	for i < 21 {
 		for j < 99 {
 			for k < 20 {
 				getUrl(date+i, chapterId+j, sectionId+k, logFile, errFile)
